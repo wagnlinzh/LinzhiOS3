@@ -122,8 +122,7 @@ public class HibernateORMappingTest2 {
             System.out.println(score.getScore());
         }
 
-        session.getTransaction().commit();
-        session.close();
+
 
         System.out.println("==========================================================");
 
@@ -148,6 +147,18 @@ public class HibernateORMappingTest2 {
 //            System.out.println(list.get(i));
 //        }
 
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        List<Integer> list1=null;
+        list1=session.createQuery("select score from linzhi.bean.Score").list();
+        for(int i=0;i<list.size();i++){
+            System.out.println(list1.get(i));
+        }
+
+
+
+
+        session.getTransaction().commit();
+        session.close();
     }
 
 

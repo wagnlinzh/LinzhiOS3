@@ -3,7 +3,6 @@ package linzhi.DAO.impl;
 import linzhi.DAO.HibernateUtil.HibernateUtil;
 import linzhi.DAO.ScoreManagerDAO;
 import linzhi.bean.Course;
-import linzhi.bean.Score;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -22,14 +21,14 @@ public class ScoreManagerDAOImpl implements ScoreManagerDAO {
     }
 
     @Override
-    public List<Score> listAllScore(String email) {
+//    @SuppressWarnings("unchecked")
+    public List<Integer> listAllScore(String email) {
 
-        List<Score> list=null;
+        List<Integer> list=null;
         try {
             transaction = session.beginTransaction();
 
-            list= (List<Score>)session.createQuery("from Score ").list();
-
+            list=session.createQuery("select score from linzhi.bean.Score").list();
 
 
             transaction.commit();
@@ -48,11 +47,7 @@ public class ScoreManagerDAOImpl implements ScoreManagerDAO {
 
         try {
             transaction = session.beginTransaction();
-//
-//            Student stu = (Student)session.createQuery("from Student s where s.email = ?")
-//                    .setString(0, email)
-//                    .uniqueResult();
-//
+
             list= session.createQuery("from Course ").list();
 
             transaction.commit();

@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class ListAllScoreServiceImpl implements ListAllScoreService {
     @Override
-    public List<Score> listAllScore(String email) {
+    public List<Integer> listAllScore(String email) {
         ScoreManagerDAO scoreManagerDAO =new ScoreManagerDAOImpl();
 
         return scoreManagerDAO.listAllScore(email);

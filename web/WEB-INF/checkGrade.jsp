@@ -430,8 +430,9 @@
     </thead>
 
     <tbody>
-    <s:iterator value="#request.CourseList">
-    <%--<s:iterator value="#request.ScoreList">--%>
+   <%--
+
+   <s:iterator value="#request.CourseList">
     <tr>
         <td>
             <i class="tag icon"></i><s:property value="name"/>
@@ -441,18 +442,19 @@
     </tr>
     </s:iterator>
 
-    <%--
-     <s:iterator value="#request.list">
+    --%>
+
+     <s:iterator value="#request.couse_scroe">
     <tr>
         <td>
-            <i class="tag icon"></i><s:property value="map.key"/>
+            <i class="tag icon"></i>
+            <s:property value="key"/>
         </td>
-        <td><s:property value="map.value"/></td>
+        <td><s:property value="value"/></td>
         <td>20</td>
     </tr>
     </s:iterator>
 
-    --%>
     </tbody>
 </table>
 

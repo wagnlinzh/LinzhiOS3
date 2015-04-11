@@ -1,7 +1,6 @@
 package linzhi.DAO;
 
 import linzhi.bean.Course;
-import linzhi.bean.Score;
 
 import java.util.List;
 
@@ -10,7 +9,7 @@ import java.util.List;
  */
 public interface ScoreManagerDAO {
 
-    public List<Score> listAllScore(String email);
+    public List<Integer> listAllScore(String email);
 
     public List<Course> listAllCourse(String email);
 }
