@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 指定Hibernate映射文件的DTD信息 -->
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="linzhi.bean.Course" table="Course">
+
+        <id name="id" column="cid" type="string">      <!--//name=id，是指主键的名字是id，column是指对应数据库中的哪一列-->
+            <generator class="uuid"/>
+        </id>
+
+        <property name="name" column="cname" type="string"/>
+
+        <set name="students" table="S_C" cascade="save-update" order-by="id asc">
+            <key column="C_id"></key>
+            <many-to-many class="linzhi.bean.Student" column="S_id"/>
+        </set>
+
+        <set name="scores" table="S_C" cascade="all" inverse="true">
+            <key column="C_id"/>
+            <one-to-many class="linzhi.bean.Score"/>
+        </set>
+
+
+    </class>
+
+</hibernate-mapping>
+

@@ -1,0 +1,24 @@
+*{margin:0;padding:0;}
+
+/* element */
+#basic-dialog-ok,#basic-dialog-warn,#ifr-dialog{
+	display:none;
+}
+/* Overlay */
+#simplemodal-overlay {background-color:#000;}
+.simplemodal-wrap{background-color:#fff;}
+
+/* Container */
+#simplemodal-container {
+	height:153px; 
+	width:500px;
+}
+
+#ifr-dialog-content{
+	width:90%;
+	height:90%;
+}
+
+.simplemodal-wrap {
+	text-align: center;
+}

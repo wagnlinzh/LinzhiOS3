@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <package name="struts2" extends="struts-default">
+        <interceptors>
+            <interceptor name="sgininInterceptor" class="linzhi.interceptor.SgininInterceptor">
+
+            </interceptor>
+            <!--自定义的拦截器栈-->
+            <interceptor-stack name="myDefaultInterceptorStack">
+                <interceptor-ref name="sgininInterceptor"></interceptor-ref>
+                <interceptor-ref name="defaultStack"></interceptor-ref>
+            </interceptor-stack>
+        </interceptors>
+
+        <!--自定义默认的拦截器-->
+        <default-interceptor-ref name="myDefaultInterceptorStack"></default-interceptor-ref>
+
+
+        <!--全局结果.对于没有登陆的，直接转到登录页面-->
+        <global-results>
+            <result name="login">/WEB-INF/signin.jsp</result>
+        </global-results>
+
+
+
+        <action name="signin" class="linzhi.action.SigninAction">
+            <result name="success">WEB-INF/index.jsp</result>
+            <result name="input">WEB-INF/signin.jsp</result>
+        </action>
+
+        <action name="signout" class="linzhi.action.SignoutAction">
+            <result name="success">WEB-INF/signin.jsp</result>
+        </action>
+
+
+        <!--直接传送结果-->
+        <action name="checkGradeJsp" class="linzhi.action.checkGradeJspAction">
+            <result>WEB-INF/checkGrade.jsp</result>
+        </action>
+
+        <action name="chooseClassJsp">
+            <result>WEB-INF/chooseClass.jsp</result>
+        </action>
+
+        <action name="indexJsp">
+            <result>WEB-INF/index.jsp</result>
+        </action>
+
+        <action name="classHtml">
+            <result>WEB-INF/class.html</result>
+        </action>
+
+
+    </package>
+</struts>

@@ -1,0 +1,36 @@
+body{
+  background: #EEE;
+  font-family: "微软雅黑";
+}
+
+div#content {
+  position: relative;
+  background: #F6F6F6;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  padding: 30px 0;
+  border: 1px solid #c5c9cc;
+  box-shadow: 0 2px 2px rgba(173, 176, 179, 0.8);
+  z-index: 1;
+  margin-top: 15px;
+  width: 900px;
+  margin: 0 auto;
+}
+
+h3.info-title {
+  padding: 0 40px;
+  font-size: 20px;
+  height: 24px;
+  line-height: 20px;
+  color: #686868;
+  margin-bottom: 20px;
+  font-weight:100;
+}
+p{
+  color: #8b8b8b;
+  font-size: 16px;
+  height: 20px;
+  line-height: 20px;
+  padding: 4px 40px;
+}

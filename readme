@@ -1,0 +1,188 @@
+
+
+=========================<log/>=============================
+
+2015/4/6
+
+1.对于在web-inf下无法加载css和js的问题
+解决方法一：
+
+<script type="text/javascript" src="<%=request.getContextPath()%>/WEB-INF/js/default.js"></script>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/WEB-INF/css/style.css" />
+
+你试试，不过我记得WEB-INF下的文件，外部是不能访问的。如果不行，你就把这些文件放在webroot下，然后再用我这个方法，就ok了，
+一般就是这样做的。如果不行，就把js和css文件夹拷到webroot目录下。然后
+
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/default.js"></script>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css" />
+
+
+
+解决方法2
+将css和js放到web-inf的文件外面，与web-inf文件夹同级。
+
+
+2015/4/7
+1.今天晚上12：00 要抢小米耳机，等等别忘了。
+
+2.我觉得很有必要把注册页面，以及教师和管理员等模块也做出来，因为他们是一体的。
+
+3.先做出学生模块再说，数据，一开始可以随意自己添加进去，先把学生页面的内容测试通过再说。
+
+4.想要完成DAO层的内容，首先必须设计表结构了，首先必须完成表的设计，才行。但是，现在可以不需要完整的表，只是先测试通过再说，
+而且现在完成整体表设计的布局，我觉得还是比较有难度的。先建立一个User（email，password）再说。对应数据库：linzhiOS3
+
+
+5.            Query query=session.createQuery("select u.password from User u where u.username ='"+username+"'" );
+能不能不写得这么丑陋的写法，我TM就是不想用这种方式写！
+
+
+<done/>
+    有了解决方法：
+     Query query = session.createQuery("select stu.password from Student stu where stu.email =?").setString(0,email);
+
+
+    another ways: expo
+    (List<Manager>)getHibernateTemplate()
+    			.find("from Manager m where m.name = ? and m.pass=?"
+    			, mgr.getName() , mgr.getPass());
+
+
+
+6.未知情况发生
+
+  A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+  四月 07, 2015 8:37:37 下午 org.apache.coyote.AbstractProtocol pause
+  信息: Pausing ProtocolHandler ["http-nio-8899"]
+  四月 07, 2015 8:37:37 下午 org.apache.coyote.AbstractProtocol pause
+  信息: Pausing ProtocolHandler ["ajp-nio-8009"]
+  四月 07, 2015 8:37:37 下午 org.apache.catalina.core.StandardService stopInternal
+  信息: Stopping service Catalina
+  四月 07, 2015 8:37:37 下午 org.apache.catalina.loader.WebappClassLoader clearReferencesJdbc
+  严重: The web application [] registered the JDBC driver [com.mysql.jdbc.Driver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+  四月 07, 2015 8:37:37 下午 org.apache.catalina.loader.WebappClassLoader clearReferencesThreads
+  严重: The web application [] appears to have started a thread named [pool-1-thread-1] but has failed to stop it. This is very likely to create a memory leak.
+
+
+7.要做一个404页面
+<done/>
+
+
+8.
+
+
+
+2015/4/8
+1.今天早上10：00点抢小米，要买的东西有那些：耳机X1 29   移动电源 X1  手环X1 = 29+69+79  =177 。好贵
+
+
+  2299+49+49+19+29+79+79=2603
+
+2.昨天完成了登录和注销功能，今天有两个方向可以尝试，
+第一，继续完成其他功能，把那些功能，先用struts2+Hibernate 迭代的完成一遍，然后，再学习spring，再用spring+struts2+hibernate 完成。
+
+第二，开始看spring的视频，然后完成spring的内容。
+
+我建议做前者，因为前者的工作在学习了Spring之后还是要做，现在做了，免得到时候忘记了。
+
+3.那么今天的任务，大致可以确定的有:
+
+    a.把真正的数据表嫁接过来。                             <done/>
+
+    b.checkGrade.jsp页面的成绩查询问题。                  <not yet/>
+
+    c.chooseClass.jsp页面的功能模块。这个是真正的大问题。   <not yet/>
+
+
+4.404page 做好了，现在的问题是怎么部署404页面。             <not yet/>
+
+    测试阶段不用部署，那个ugly的异常页面有助于查看错误信息。
+
+
+
+5.index.jsp
+    ${requestScope.email}无法提取出数据。
+
+
+6.新问题出现，登录，随意输入的帐号都能登录。<done/>
+这个问题算是搞定了，这里面有几点学习到的经验，首先对于代码的问题，在开始视图解决的时候，看了别人的代码想把别人的粘贴过来用用，
+但是效果很不好，后来解决这个问题的的时候，最终还是在手册中找到的办法，所以，如果有什么不知道的地方，我建议直接去看手册上给出的实例代码。
+
+
+
+
+
+7.虽然今天没有完成chooseClassJsp.action的东西，但是还是有所收获，搞定了几个意料之外的bug，而且对于数据库设计上出现的小漏洞更新了设计。
+最重要的是，对于HQL查询，有了一些了解，最重要的学会使用HQL进行查询：通过已知的属性，把需要的东西查出来。并且需要区分一下SQL的思维方式。
+
+
+8.新问题出现，怎么将分数和课程名称关联起来？HashMap可以吗？如果可以怎么实现？
+
+
+
+2015/4/10
+四月的三分之一个月过去了，还有不到两个月的时间就得从学校滚蛋了。我一直在默念：这是他们的母校，不是我的。可是我一想到会这么失败的
+从这里滚蛋，心里也很不好受。
+
+但依然，这不是我的母校，是他们的。
+
+接着完成这个作品吧，我想下次和老师见面的时候已经做出了点成绩。
+
+1.关联分数和课程名，两种办法，
+  第一种先用list 实现多表之间的多对多关系。
+  第二种办法，hashMap，在DAO层对数据进行处理，实现课程名——分数的映射。
+
+  还是用List吧，关于与数据库相关的数据的处理还是在最底下处理一下吧。把数据弄上来然后再处理的办法总有点……怪
+  用list的话，需要处理的有Course 和Score的hbm文件。Student的hbm也要对应的改与Score相关的那一部分。
+
+
+    你的数学不会比你的毛概好多少，都是在一知半解的状态中洋洋自得。
+
+
+2.改为list之后，很多操作会有所不同，需要改变很多DAO层的内容
+
+改为list后的index_S,index_C 不会自动增加？？？
+
+绕了一圈，发现原来只要使用数据库排序就可以解决问题，所以，可以不用改成list 也不用考虑List的怎么操作。我靠！这就是典型的书读得太少，想得太多。
+
+
+3.checkGrade.jsp使用了struts2标签，但是没法显示出我需要它显示的数据，原因未知？？？？？？
+
+    是否，即便不是上面第二个问题的原因，我也依然要把set改为list，用来更好的配合输出？有必要吗？如果没有必要，我应该怎么做？
+
+    <done/>
+
+    没有做太大的修改，是jsp中struts2的标签没有用好，自己的问题。感谢张龙Hibernate 视频 E04
+
+4.而现在的新问题是，怎么把课程名称和对应的成绩同时正确输出到checkGrade页面上？？？？？
+
+    对于这个问题，我觉得可以专门设计出另一个对象，通过这个对象来读取课程名，期中成绩，期末成绩，等。
+    还有一种做法，是想办法将 courseName和courseScore 关联起来，然后在只用一个iterator 来迭代出来。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=========================<done/>=============================
+
+1.将不应该被用户看到的jsp页面放到了web-inf目录下
+
+2.完成了对不能直接跳转的action，进行了重定向到sigin页面的定向
+
+3.完成了数据库的移植
+
+4.
