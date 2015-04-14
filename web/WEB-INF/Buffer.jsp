@@ -10,5 +10,6 @@
     request.setCharacterEncoding("UTF-8");
     String className = request.getParameter("className");
 
-    out.println(className);
+
+    out.println("您选择的课程是"+className);
 %>

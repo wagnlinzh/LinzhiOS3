@@ -39,7 +39,8 @@
     
 
       <div class="jumbotron" id="classes">
-        <p>Now Time: Monday Morning #1。</p>
+        <p>Now Time:<%=session.getAttribute("classTime")%> 。</p>
+        <p><%= request.getParameter("BUFFER")%></p>
       </div>
 
       <!-- Form -->
@@ -223,6 +224,8 @@
       });
 
     </script>
+
+
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="assets/js/ie10-viewport-bug-workaround.js"></script>

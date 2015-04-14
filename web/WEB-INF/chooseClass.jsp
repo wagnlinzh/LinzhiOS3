@@ -91,7 +91,7 @@
           <div class="eight column row">
             <div class="column"><i class="tag icon"></i>Morning</div>
             
-            <div class="column" id="Monday Morning #1"><a href='class.jsp' class='open-basic-ifr'><div class='ui blue basic button'>尚未选课</div></a></div>
+            <div class="column" id="1_1" value="Monday Morning ^&$#$%1"><a href='classHtml.action' class='open-basic-ifr'><div class='ui blue basic button'>尚未选课</div></a></div>
             <div class="column" id="Tuesday Morning #1"></div>
             <div class="column" id="Wenday Morning #1"></div>
             <div class="column" >概率论</div>
@@ -173,7 +173,7 @@
       <!-- iframe弹出层 [[ -->  
       <iframe frameborder="0" scrolling="yes" id="ifr-dialog-container" src="javascript::" class="box-iframe"></iframe>
 
-      您选择的课程是 <div id='className' ></div>
+      <div id='className' ></div>
 
       <a href="#" class="simplemodal-close"><div class="ui blue button">确认并关闭</div></a>
         <%--
@@ -182,7 +182,7 @@
 
                 1.点击确认后，把数据提交到服务器
 
-                2.把课程名称顺带提交到主模版页面
+                2.把课程名称顺带提交到主模版页面->这个要用到ajax->加载局部内容。
 
 
                 ？？？？？？
@@ -204,6 +204,9 @@
 
     </footer>
 
+
+
+
     
 	  <!--add jquery-->
     <script src="dist/js/jquery-2.1.3.js"></script>
@@ -214,9 +217,6 @@
     <!-- SimpleModal and Basic JS files -->
     <script type='text/javascript' src='dist/js/jquery.simplemodal.js'></script>
 
-
-
-   
         
     <!--  为选课的空的格子里填入尚未选课的按钮;-->
     <script type="text/javascript">
@@ -249,33 +249,51 @@
             "opacity":70,
             "overlayClose":true,
             "containerId":id,
+            "transient":true,
+            "dataId":'simplemodal-data',
+            "persist":true,
             onClose:function(){
-
-//              var $className=$.get("class.jsp",$className);
-
-
-
-              $.modal.close();
+                $.modal.close();
             }}); //id=ifr-dialog-content
         }  
     </script>
 
-
-
+<%--
+    隐藏的按钮，仅仅是为了传值的buffer
+    <input  type="hidden" id="classTimeBuffer" value="0" name="BUFFER"/>
+--%>
     <script type="text/javascript">
       $(function(){
         var $Btn=$(".ui.blue.basic.button");
         $Btn.click(function(e){
 
+           var classTime =$("#1_1").attr("value");
+
+           $("#classTimeBuffer").attr("value",classTime);
+
+           alert($("#classTimeBuffer").val());
+
+
+
+
+            <%
+                session.setAttribute("classTime","Monday morning #1 (Defult)");
+            %>
 
             $(this).replaceWith("<a href='classHtml.action' class='open-basic-ifr'>" +
                     "<div class='ui blue basic button'>"+
-                        "<div id='className' >"+
-                        "</div>"+
+
+                        "<div id='className'>"+
+                        "</div>"+"ajax test"+
+
                     " </div></a>");//$className not finish;
         })
       })
     </script>
+
+
+
+
       
   
 </body>
