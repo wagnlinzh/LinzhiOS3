@@ -21,6 +21,7 @@
 
   <link href="dist/css/theme.css" rel="stylesheet">
 </head>
+
 <body>
 	
 
@@ -90,10 +91,10 @@
           <div class="eight column row">
             <div class="column"><i class="tag icon"></i>Morning</div>
             
-            <div class="column" id="1_1"><a href='class.html' class='open-basic-ifr'><div class='ui blue basic button'>尚未选课</div></a></div>       
-            <div class="column" id="2_1"></div>
-            <div class="column" id="testClass"></div>
-            <div class="column">概率论</div>
+            <div class="column" id="Monday Morning #1"><a href='class.jsp' class='open-basic-ifr'><div class='ui blue basic button'>尚未选课</div></a></div>
+            <div class="column" id="Tuesday Morning #1"></div>
+            <div class="column" id="Wenday Morning #1"></div>
+            <div class="column" >概率论</div>
             <div class="column">政治</div>
             <div class="column">高等数学</div>
             <div class="column">线性代数</div>
@@ -171,8 +172,26 @@
     <div id="ifr-dialog" >
       <!-- iframe弹出层 [[ -->  
       <iframe frameborder="0" scrolling="yes" id="ifr-dialog-container" src="javascript::" class="box-iframe"></iframe>
-      您选择的课程是+$className
+
+      您选择的课程是 <div id='className' ></div>
+
       <a href="#" class="simplemodal-close"><div class="ui blue button">确认并关闭</div></a>
+        <%--
+            /*
+                这里要做的事情有：
+
+                1.点击确认后，把数据提交到服务器
+
+                2.把课程名称顺带提交到主模版页面
+
+
+                ？？？？？？
+                可以不可以将href="submit_class.action"? 然后通过action来操作呢？不要这样，让每一层的分层次
+                尽可能的清晰一些会比较好
+
+            */
+
+        --%>
 
       <!-- iframe弹出层 ]] -->
     </div>
@@ -182,6 +201,7 @@
       <div class="container">
         <p class="text-muted">copyright 2014-2015 wanglinzhizhi.</p>
       </div>
+
     </footer>
 
     
@@ -193,6 +213,9 @@
 
     <!-- SimpleModal and Basic JS files -->
     <script type='text/javascript' src='dist/js/jquery.simplemodal.js'></script>
+
+
+
    
         
     <!--  为选课的空的格子里填入尚未选课的按钮;-->
@@ -203,8 +226,8 @@
           var $unit=$(".column:not('.eight.column.row'):eq("+i+")");
           if ($unit.text()=="") {
               $unit.append("<a href='classHtml.action' class='open-basic-ifr'><div class='ui blue basic button'>尚未选课</div></a>");
-          };
-        };
+          }
+        }
       });
     </script>
     
@@ -212,14 +235,14 @@
     <script type='text/javascript'>
         ;
         jQuery(function ($) {
-          /* 提示框 */
+          /* iframe */
           $('.open-basic-ifr').click(function (e) {
-            showIframe("classHtml.action","ifr-dialog-content");
+            showIframe("classHtml.action","ifr-dialog-contenter");
             return false;
           });
         });
 
-        /*showIframe */
+        /*showIframe 参数配置*/
         function showIframe(src , id){
           $("#ifr-dialog-container").attr("src",src);
           $('#ifr-dialog').modal({
@@ -227,24 +250,34 @@
             "overlayClose":true,
             "containerId":id,
             onClose:function(){
-              alert("onCLose()函数，todo something，");
-              // var $className=$.get("class.html",$className);
-              // alert($className);
+
+//              var $className=$.get("class.jsp",$className);
+
+
+
               $.modal.close();
             }}); //id=ifr-dialog-content
         }  
     </script>
-   
+
+
 
     <script type="text/javascript">
       $(function(){
         var $Btn=$(".ui.blue.basic.button");
         $Btn.click(function(e){
-            $(this).replaceWith("<a href='classHtml.action' class='open-basic-ifr'><div class='ui blue basic button'>$className</div></a>");//$className not finish;
+
+
+            $(this).replaceWith("<a href='classHtml.action' class='open-basic-ifr'>" +
+                    "<div class='ui blue basic button'>"+
+                        "<div id='className' >"+
+                        "</div>"+
+                    " </div></a>");//$className not finish;
         })
       })
     </script>
       
   
 </body>
+
 </html>

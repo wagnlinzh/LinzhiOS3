@@ -418,13 +418,13 @@
 <table class="ui celled striped table">
     <thead>
     <tr>
-        <th colspan="3">
+        <th colspan="2">
             第OOXX学年
         </th>
     </tr>
     <tr>
         <th class="disabled">课程名称</th>
-        <th class="disabled">期中测试成绩</th>
+        <%--<th class="disabled">期中测试成绩</th>--%>
         <th class="disabled">期末测试成绩</th>
     </tr>
     </thead>
@@ -451,7 +451,7 @@
             <s:property value="key"/>
         </td>
         <td><s:property value="value"/></td>
-        <td>20</td>
+        <%--<td>20</td>--%>
     </tr>
     </s:iterator>
 

@@ -107,6 +107,16 @@ div#ifr-dialog {
 
 
 
+/*iframe 的样式安排*/
+div#ifr-dialog-contenter {
+    width: 90%;
+    left: 5%;
+    height: 85%;
+    top:9px;
+    z-index:1002;
+    position:fixed;
+}
+
 
 /*******************************
             Global

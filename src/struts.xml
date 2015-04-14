@@ -53,7 +53,7 @@
         </action>
 
         <action name="classHtml">
-            <result>WEB-INF/class.html</result>
+            <result>WEB-INF/class.jsp</result>
         </action>
 
 
