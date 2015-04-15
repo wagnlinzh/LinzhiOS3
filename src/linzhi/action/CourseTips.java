@@ -3,9 +3,9 @@ package linzhi.action;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
- * Created by wanglinzhizhi on 15-4-14.
+ * Created by wanglinzhizhi on 15-4-15.
  */
-public class chooseClassAction extends ActionSupport {
+public class CourseTips extends ActionSupport {
     private String classTime;
 
     public String getClassTime() {
@@ -19,10 +19,7 @@ public class chooseClassAction extends ActionSupport {
     @Override
     public String execute() throws Exception {
 
-
-        System.out.println("classTime: "+classTime);
-
-
+        System.out.println("classTime_CourseTips : "+classTime);
 
         return SUCCESS;
     }

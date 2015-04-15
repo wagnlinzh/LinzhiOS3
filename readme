@@ -255,6 +255,15 @@ goldfish
 
 
 
+20115/4/15
+1.  java.lang.ClassCastException: java.lang.String cannot be cast to linzhi.bean.ClassTime.
+
+2.  如果说对于这个simplemodal的方法的传参数问题始终无法解决的话，我是否应该舍弃这个simplemodal的iframe框架？
+
+
+
+
+
 
 
 

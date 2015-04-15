@@ -7,19 +7,19 @@
 <struts>
 
     <package name="struts2" extends="struts-default">
-        <interceptors>
-            <interceptor name="sgininInterceptor" class="linzhi.interceptor.SgininInterceptor">
+        <!--<interceptors>-->
+            <!--<interceptor name="sgininInterceptor" class="linzhi.interceptor.SgininInterceptor">-->
 
-            </interceptor>
-            <!--自定义的拦截器栈-->
-            <interceptor-stack name="myDefaultInterceptorStack">
-                <interceptor-ref name="sgininInterceptor"></interceptor-ref>
-                <interceptor-ref name="defaultStack"></interceptor-ref>
-            </interceptor-stack>
-        </interceptors>
+            <!--</interceptor>-->
+            <!--&lt;!&ndash;自定义的拦截器栈&ndash;&gt;-->
+            <!--<interceptor-stack name="myDefaultInterceptorStack">-->
+                <!--<interceptor-ref name="sgininInterceptor"></interceptor-ref>-->
+                <!--<interceptor-ref name="defaultStack"></interceptor-ref>-->
+            <!--</interceptor-stack>-->
+        <!--</interceptors>-->
 
-        <!--自定义默认的拦截器-->
-        <default-interceptor-ref name="myDefaultInterceptorStack"></default-interceptor-ref>
+        <!--&lt;!&ndash;自定义默认的拦截器&ndash;&gt;-->
+        <!--<default-interceptor-ref name="myDefaultInterceptorStack"></default-interceptor-ref>-->
 
 
         <!--全局结果.对于没有登陆的，直接转到登录页面-->
@@ -52,9 +52,15 @@
             <result>WEB-INF/index.jsp</result>
         </action>
 
-        <action name="classHtml" class="linzhi.action.chooseClassAction">
+        <action name="CouresTips" class="linzhi.action.CourseTips">
             <result>WEB-INF/class.jsp</result>
         </action>
+
+        <action name="classHtml">
+            <result>WEB-INF/class.jsp</result>
+        </action>
+
+
 
 
     </package>

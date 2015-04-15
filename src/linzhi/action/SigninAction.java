@@ -22,9 +22,6 @@ public class SigninAction extends ActionSupport {
     private SigninService signinService =new SigninServiceImpl();
 
 
-
-
-
     public String getEmail() {
         return email;
     }
