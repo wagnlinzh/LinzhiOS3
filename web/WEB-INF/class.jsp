@@ -37,8 +37,8 @@
 
 
       <div class="jumbotron" id="classes">
-        <p>Now Time:<%=session.getAttribute("classTime")%> 。</p>
-        <p><%= request.getParameter("classTime")%></p>
+        <p>Now Time:<%=session.getAttribute("classTimeReal")%> 。</p>
+        <%--<p><%= request.getParameter("classTime")%></p>--%>
       </div>
 
       <!-- Form -->
@@ -194,6 +194,13 @@
             });
     </script>
 
+
+
+
+  <form action="ClassName.action" id="formclassName">
+      <input type="hidden" id="classNameBuffer" value="0"  name="className"/>
+  </form>
+
     <!-- 提交按钮 -->
     <script type="text/javascript">
       var $submitBtn=$(".ui.blue.button");
@@ -205,12 +212,23 @@
               });
             }else{
                 //将课程名的数据传到chooseClass.jsp页面
-                <%
-                    System.out.println(session.getAttribute("className"));
-                %>
+                <%--<%--%>
+                    <%--System.out.println(session.getAttribute("className"));--%>
+                <%--%>--%>
+
+
 
                 $.modal('<div><h1>Good Luck! '+$className+'</h1><p></p><p>所选择的课程已提交!</p></div>',
                         {"overlayClose":true});
+
+
+                var $classNamebuffer=$("#classNameBuffer");
+                $classNamebuffer.attr("value",$className);
+//                alert($classNamebuffer.attr("value"));
+
+                $("#formclassName").submit();
+
+
 
 
                 // var url="chooseClass.jsp"

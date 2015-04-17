@@ -45,7 +45,7 @@
     </div> <!-- /container -->
 
 
-    <footer class="footer" style="padding-top: 290px">
+    <footer class="footer" style="padding-top: 280px">
         <div class="container">
             <p class="text-muted">copyright 2014-2015 wanglinzhizhi.</p>
         </div>
