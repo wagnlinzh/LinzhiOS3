@@ -66,7 +66,6 @@ public class checkGradeJspAction extends ActionSupport {
 
             String courseName = courseList.get(i).getName();
             int course_score = (int) scoreList.get(i);
-
             map.put(courseName, course_score);
 
         }
@@ -83,6 +82,7 @@ public class checkGradeJspAction extends ActionSupport {
     }
 
 
+//    for test
     public static void main(String[] args) {
         String email = "alan@me.com";
         //        课程名称

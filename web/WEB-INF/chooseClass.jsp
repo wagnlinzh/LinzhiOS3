@@ -305,14 +305,14 @@
             var $unit = $(".column:not('.eight.column.row'):eq(" + BtnID + ")");
 
             $unit.replaceWith("<div class='column'   id='flagChoosen'> " +
+
                     "<a href='classHtml.action' class='open-basic-ifr'>" +
 
                     "<button class='ui blue basic button'>" + "<%= request.getParameter("className")%>" +
 
                     " </button></a>" +
+
                     "</div>");
-
-
         }
 
     })

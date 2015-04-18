@@ -1,5 +1,5 @@
-<%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ page contentType="text/html; charset=UTF-8" language="java" errorPage="" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -444,13 +444,16 @@
 
     --%>
 
-     <s:iterator value="#request.couse_scroe">
+    <s:iterator value="#request.couse_scroe">
     <tr>
         <td>
             <i class="tag icon"></i>
             <s:property value="key"/>
         </td>
-        <td><s:property value="value"/></td>
+
+        <td>
+            <s:property value="value"/>
+        </td>
         <%--<td>20</td>--%>
     </tr>
     </s:iterator>

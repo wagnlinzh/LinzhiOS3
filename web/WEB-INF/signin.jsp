@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="/favicon.ico">
+    <link rel="icon" href="favicon.ico">
 
     <title>Signin</title>
 
@@ -46,6 +46,7 @@
 
 
     <footer class="footer" style="padding-top: 280px">
+
         <div class="container">
             <p class="text-muted">copyright 2014-2015 wanglinzhizhi.</p>
         </div>
