@@ -76,7 +76,7 @@ public class CourseTips extends ActionSupport {
                 default:break;
             }
 
-        int a=Integer.parseInt(classTime);
+//        int a=Integer.parseInt(classTime);
 
         ActionContext.getContext().getSession().put("classTimeReal",realclassTime);
         ActionContext.getContext().getSession().put("classTimeNum",classTime);

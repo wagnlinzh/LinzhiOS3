@@ -1,6 +1,3 @@
-<%@ page import="java.util.HashMap" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.Map" %>
 <%@ page contentType="text/html; charset=UTF-8" language="java" autoFlush="true" errorPage="" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
@@ -71,8 +68,7 @@
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
-        <h1>选课系统</h1>
-
+        <p>选课系统</p>
         <p>这是选课系统，通过本系统进行选课操作，并提交.</p>
     </div>
 
@@ -227,8 +223,7 @@
 <script type='text/javascript' src='dist/js/jquery.simplemodal.js'></script>
 
 
-<!--  为选课的空的格子里填入尚未选课的按钮;-->
-
+<!--  为课表填入相应的课程，为选课的空的格子里填入尚未选课的按钮;-->
 <script type="text/javascript">
 
     $(function () {
@@ -237,7 +232,10 @@
 
         <%--用一个循环类似的东西，将className，通过序号将其放入对应的list中。序号对应为classTimeNum--%>
 
-        <s:iterator value="#request.classInfoList">
+        <s:iterator value="#session.classInfoList">
+
+
+
         var $unit = $(".column:not('.eight.column.row'):eq(" +
                 <s:property value="classTimeNum"/> +")");
 
@@ -253,11 +251,9 @@
         }
 
 
-
-
         </s:iterator>
 
-
+        <%--将剩余空 的部分填满尚未选课的button--%>
         for (var i = 1; i < 56; i++) {
 
 
@@ -324,29 +320,27 @@
 <%--从class.jsp跳转回来的时候的课表中的className的更新操作。--%>
 <script type="text/javascript">
 
-    $(function () {
+    <%--$(function () {--%>
 
 
-        var BtnID = <%=session.getAttribute("classTimeNum")%>;
+        <%--var BtnID = <%=session.getAttribute("classTimeNum")%>;--%>
 
-        if (BtnID != null) {
+        <%--if (BtnID != null) {--%>
 
-            var $unit = $(".column:not('.eight.column.row'):eq(" + BtnID + ")");
+            <%--var $unit = $(".column:not('.eight.column.row'):eq(" + BtnID + ")");--%>
 
-            $unit.replaceWith("<div class='column'   id='flagChoosen'> " +
+            <%--$unit.replaceWith("<div class='column'   id='flagChoosen'> " +--%>
 
-                    "<a href='classHtml.action' class='open-basic-ifr'>" +
+                    <%--"<a href='classHtml.action' class='open-basic-ifr'>" +--%>
 
-                    "<button class='ui blue basic button'>" + "<%= request.getParameter("className")%>" +
+                    <%--"<button class='ui blue basic button'>" + "<%= request.getParameter("className")%>" +--%>
 
-                    " </button></a>" +
+                    <%--" </button></a>" +--%>
 
-                    "</div>");
-        }
+                    <%--"</div>");--%>
+        <%--}--%>
 
-    })
-
-
+    <%--})--%>
 </script>
 
 </body>

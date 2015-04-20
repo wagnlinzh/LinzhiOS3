@@ -60,7 +60,7 @@
             <result>WEB-INF/class.jsp</result>
         </action>
 
-        <action name="ClassName">
+        <action name="ClassName" class="linzhi.action.ClassName">
             <result>WEB-INF/chooseClass.jsp</result>
         </action>
 

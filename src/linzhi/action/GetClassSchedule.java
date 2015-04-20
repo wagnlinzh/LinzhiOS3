@@ -11,9 +11,7 @@ import linzhi.service.ListAllCourseService;
 import linzhi.service.impl.ListAllClassTimeServiceImpl;
 import linzhi.service.impl.ListAllClassTypeServiceImpl;
 import linzhi.service.impl.ListAllCourseServiceImpl;
-import org.apache.struts2.ServletActionContext;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -69,15 +67,10 @@ public class GetClassSchedule extends ActionSupport {
 
         }
 
-        HttpServletRequest request = ServletActionContext.getRequest();
+//        HttpServletRequest request = ServletActionContext.getRequest();
 
-//        request.setAttribute("classTime_courseMap", classTimeMap);
 
-        request.setAttribute("classTimeList",classTimeList);
-
-        request.setAttribute("classTypeList",classTypeList);
-
-        request.setAttribute("classInfoList",classInfoList);
+        ActionContext.getContext().getSession().put("classInfoList",classInfoList);
 
 
 

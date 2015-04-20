@@ -402,6 +402,8 @@ goldfish
 3.  对于区分选修和必修，在score表中（好吧，其实这个表早就该改名为classManager表了）设置一个classType属性，当
     classType==1 表示 必修，classType ==0 表示选修。
 
+    <done>
+    完成了区分选修必修的，chooseClass页面的课表的显示工作。
 
 
 
@@ -461,7 +463,7 @@ goldfish
 
 5.chooseClass和class页面的参数传递。
 
-6.
+6.完成了数据库中课表到页面的显示，区分必修选修情况下 的显示工作。
 
 
 
@@ -474,7 +476,7 @@ goldfish
 
 1.  怎么在readme中放截图呢？
 
-2.
+2.  怎么解决登录的时候的重复提交的问题呢？
 
 
 
