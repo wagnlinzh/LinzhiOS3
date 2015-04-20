@@ -49,12 +49,12 @@ public class checkGradeJspAction extends ActionSupport {
         String email = student.getEmail();
 
 
-//        课程名称
+//      课程名称
         ListAllCourseService listAllCourseService = new ListAllCourseServiceImpl();
 
         List<Course> courseList = listAllCourseService.listAllCourseService(email);
 
-//分数
+//      分数
         ListAllScoreService listAllScoreService = new ListAllScoreServiceImpl();
 
         List<Integer> scoreList = listAllScoreService.listAllScore(email);
@@ -85,12 +85,12 @@ public class checkGradeJspAction extends ActionSupport {
 //    for test
     public static void main(String[] args) {
         String email = "alan@me.com";
-        //        课程名称
+//      课程名称
         ListAllCourseService listAllCourseService = new ListAllCourseServiceImpl();
 
         List<Course> courseList = listAllCourseService.listAllCourseService(email);
 
-//分数
+//      分数
         ListAllScoreService listAllScoreService = new ListAllScoreServiceImpl();
 
         List scoreList = listAllScoreService.listAllScore(email);

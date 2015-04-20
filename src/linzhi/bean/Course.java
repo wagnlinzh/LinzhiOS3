@@ -21,8 +21,6 @@ public class Course {
         this.scores = scores;
     }
 
-
-
     public String getId() {
         return id;
     }

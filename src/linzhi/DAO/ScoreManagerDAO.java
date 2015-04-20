@@ -11,5 +11,8 @@ public interface ScoreManagerDAO {
 
     public List<Integer> listAllScore(String email);
 
+    public List<Integer> listAllClassTime(String email);
+
     public List<Course> listAllCourse(String email);
+
 }

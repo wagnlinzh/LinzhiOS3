@@ -7,6 +7,8 @@ public class Score {
 
     private String id;
     private int score;
+    private int classTimeNum;
+    private int classType;//classType=1 必修，classType =0 选修
     private Student student;
     private Course course;
 
@@ -34,6 +36,14 @@ public class Score {
         this.student = student;
     }
 
+    public int getClassType() {
+        return classType;
+    }
+
+    public void setClassType(int classType) {
+        this.classType = classType;
+    }
+
     public Course getCourse() {
         return course;
     }
@@ -42,4 +52,11 @@ public class Score {
         this.course = course;
     }
 
+    public int getClassTimeNum() {
+        return classTimeNum;
+    }
+
+    public void setClassTimeNum(int classTimeNum) {
+        this.classTimeNum = classTimeNum;
+    }
 }

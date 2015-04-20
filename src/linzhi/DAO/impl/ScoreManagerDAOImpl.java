@@ -40,6 +40,23 @@ public class ScoreManagerDAOImpl implements ScoreManagerDAO {
         return list;
     }
 
+    @Override
+    public List<Integer> listAllClassTime(String email) {
+        List<Integer> list=null;
+        try {
+            transaction = session.beginTransaction();
+
+            list=session.createQuery("select classTimeNum from linzhi.bean.Score").list();
+
+
+            transaction.commit();
+        } catch (HibernateException e) {
+            HibernateUtil.rollback(transaction);
+        } finally {
+            HibernateUtil.closeSession();
+        }
+        return list;
+    }
 
     @Override
     public List<Course> listAllCourse(String email) {

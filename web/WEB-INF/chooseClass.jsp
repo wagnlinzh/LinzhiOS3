@@ -1,4 +1,8 @@
+<%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %>
 <%@ page contentType="text/html; charset=UTF-8" language="java" autoFlush="true" errorPage="" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 
 <!DOCTYPE html>
 <head>
@@ -24,7 +28,6 @@
 </head>
 
 <body>
-
 
 <!-- Fixed navbar -->
 <nav class="navbar navbar-inverse">
@@ -101,7 +104,7 @@
             <div class="column">概率论</div>
             <div class="column">政治</div>
             <div class="column">高等数学</div>
-            <div class="column">线性代数</div>
+            <div class="column"></div>
         </div>
 
         <!-- 上午 第二节课 -->
@@ -121,7 +124,7 @@
         <!--下午 第一节课 -->
         <div class="eight column row">
             <div class="column"><i class="tag icon"></i>Afternoon</div>
-            <div class="column">高等数学</div>
+            <div class="column"></div>
             <div class="column">线性代数</div>
             <div class="column">概率论</div>
             <div class="column">政治</div>
@@ -150,7 +153,7 @@
             <div class="column">线性代数</div>
             <div class="column">概率论</div>
             <div class="column">政治</div>
-            <div class="column">数据结构</div>
+            <div class="column"></div>
             <div class="column">计算机组成原理</div>
             <div class="column">计算机网络</div>
         </div>
@@ -183,6 +186,7 @@
     <a href="#" class="simplemodal-close">
         <div class="ui blue button">确认并关闭</div>
     </a>
+
     <%--
         /*
             这里要做的事情有：
@@ -224,10 +228,42 @@
 <!--  为选课的空的格子里填入尚未选课的按钮;-->
 <script type="text/javascript">
     $(function () {
-        //为选课的空的格子里填入尚未选课的按钮;
-        for (var i = 1; i < 56; i++) {
-            var $unit = $(".column:not('.eight.column.row'):eq(" + i + ")");
 
+        <%
+            Map classTime_courseMap=  (HashMap) request.getAttribute("classTime_courseMap");
+
+            List<Integer> classTimeNumList=(List<Integer>) request.getAttribute("classTimeList");
+
+            for(int i=0;i<classTimeNumList.size();i++){
+                System.out.println("JSP : classTime_courseMap.get() : className : "
+                + classTime_courseMap.get(classTimeNumList.get(i)));
+            }
+
+
+        %>
+
+        <%--用一个循环类似的东西，将className，通过序号将其放入对应的list中。序号对应为classTimeNum--%>
+
+
+
+
+
+        <s:iterator value="#request.classTime_courseMap">
+            var $unit = $(".column:not('.eight.column.row'):eq(" +
+                    <s:property value="key"/> +")");
+
+            $unit.append("<a href='classHtml.action' class='open-basic-ifr'>" +
+            "<button class='ui blue basic button' id=" + i + ">" +
+            "<s:property value="value"/>" + "</button>" +
+            "</a>");
+        </s:iterator>
+
+
+
+        for (var i = 1; i < 56; i++) {
+
+
+            var $unit = $(".column:not('.eight.column.row'):eq(" + i + ")");
 
             if ($unit.text() == "") {
                 $unit.append("<a href='classHtml.action' class='open-basic-ifr'>" +
@@ -265,17 +301,12 @@
     }
 </script>
 
-<%--
-    隐藏的按钮，仅仅是为了传值的buffer
-
-
-
-
---%>
+<%--隐藏的按钮，仅仅是为了传值的buffer--%>
 <form action="CouresTips.action" id="testform">
     <input type="hidden" id="classTimeBuffer" value="0" name="classTime"/>
 </form>
 
+<%--提交到class页面，classTime的内容--%>
 <script type="text/javascript">
     $(function () {
         var $Btn = $(".ui.blue.basic.button");
@@ -319,7 +350,6 @@
 
 
 </script>
-
 
 </body>
 

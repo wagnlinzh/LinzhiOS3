@@ -58,18 +58,22 @@ public class HibernateORMappingTest2 {
 //        stu.setPassword("alan");
 
         Course c = new Course();
-        c.setName("数理统计与概率论");
+        c.setName("OS");
 
         Score score = new Score();
         score.setStudent(stu);
         score.setCourse(c);
-        score.setScore(88);
+        score.setScore(98);
+        score.setClassTimeNum(9);
+
+
 
 
 
         session.save(stu);
         session.save(c);
         session.save(score);
+        /*Note：stu，c可以不用调用save，因为score和stu以及c是级联的，所以调用不调用都会保存它们*/
 
         session.getTransaction().commit();
         session.close();

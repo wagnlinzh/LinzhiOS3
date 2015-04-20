@@ -44,7 +44,7 @@
             <result>WEB-INF/checkGrade.jsp</result>
         </action>
 
-        <action name="chooseClassJsp">
+        <action name="chooseClassJsp" class="linzhi.action.GetClassSchedule">
             <result>WEB-INF/chooseClass.jsp</result>
         </action>
 

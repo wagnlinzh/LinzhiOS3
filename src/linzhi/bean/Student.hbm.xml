@@ -27,6 +27,10 @@
             <one-to-many class="linzhi.bean.Score"/>
         </set>
 
+
+
+
+
         <!--<list name="scores" table="S_C" cascade="all">-->
             <!--<key column="S_id"/>-->
             <!--<index column="index_S"/>-->
