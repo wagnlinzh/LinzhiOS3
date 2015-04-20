@@ -2,15 +2,19 @@ package linzhi.action;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import linzhi.bean.ClassDetail;
 import linzhi.bean.Course;
 import linzhi.bean.Student;
 import linzhi.service.ListAllClassTimeService;
+import linzhi.service.ListAllClassTypeService;
 import linzhi.service.ListAllCourseService;
 import linzhi.service.impl.ListAllClassTimeServiceImpl;
+import linzhi.service.impl.ListAllClassTypeServiceImpl;
 import linzhi.service.impl.ListAllCourseServiceImpl;
 import org.apache.struts2.ServletActionContext;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,22 +45,41 @@ public class GetClassSchedule extends ActionSupport {
         ListAllClassTimeService listAllClassTimeService=new ListAllClassTimeServiceImpl();
         List<Integer> classTimeList=listAllClassTimeService.listAllClassTime(email);
 
-        Map classTimeMap = new HashMap();
+
+        ListAllClassTypeService listAllClassTypeService=new ListAllClassTypeServiceImpl();
+        List<Integer> classTypeList=listAllClassTypeService.listAllClassType(email);
+
+//        Map classTimeMap = new HashMap();
+
+        List<ClassDetail> classInfoList=new ArrayList<ClassDetail>();
 
         for (int i = 0; i < classTimeList.size(); i++) {
 
-            int course_classTimeNum = (int) classTimeList.get(i);
             String courseName = courseList.get(i).getName();
-            System.out.println(courseName);
-            System.out.println(course_classTimeNum);
-            classTimeMap.put(course_classTimeNum,courseName);
+            int course_classTimeNum = classTimeList.get(i);
+            int classType=classTypeList.get(i);
+
+            ClassDetail classDetail=new ClassDetail();
+            classDetail.setClassName(courseName);
+            classDetail.setClassTimeNum(course_classTimeNum);
+            classDetail.setClassType(classType);
+
+            classInfoList.add(classDetail);
+
 
         }
 
         HttpServletRequest request = ServletActionContext.getRequest();
-        request.setAttribute("classTime_courseMap", classTimeMap);
+
+//        request.setAttribute("classTime_courseMap", classTimeMap);
 
         request.setAttribute("classTimeList",classTimeList);
+
+        request.setAttribute("classTypeList",classTypeList);
+
+        request.setAttribute("classInfoList",classInfoList);
+
+
 
 
         return SUCCESS;
@@ -74,26 +97,49 @@ public class GetClassSchedule extends ActionSupport {
         List<Integer> classTimeList=listAllClassTimeService.listAllClassTime(email);
 
 
+        ListAllClassTypeService listAllClassTypeService=new ListAllClassTypeServiceImpl();
+        List<Integer> classTypeList=listAllClassTypeService.listAllClassType(email);
+
+
         Map classTimeMap = new HashMap();
+        List<ClassDetail> classInfoList=new ArrayList<ClassDetail>();
 
         for (int i = 0; i < classTimeList.size(); i++) {
 
-            int course_classTimeNum = classTimeList.get(i);
             String courseName = courseList.get(i).getName();
+            int course_classTimeNum = classTimeList.get(i);
+            int classType=classTypeList.get(i);
 
-            System.out.println(course_classTimeNum);
-            System.out.println(courseName);
 
-            classTimeMap.put(course_classTimeNum,courseName);
+//            System.out.println(course_classTimeNum);
+//            System.out.println(courseName);
+
+//            classTimeMap.put(course_classTimeNum,courseName);
+            ClassDetail classDetail=new ClassDetail();
+            classDetail.setClassName(courseName);
+            classDetail.setClassTimeNum(course_classTimeNum);
+            classDetail.setClassType(classType);
+
+            classInfoList.add(classDetail);
+
+
         }
 
-        for (int i = 0; i < classTimeMap.size(); i++) {
 
-            String className = (String) classTimeMap.get(classTimeList.get(i));
 
-            System.out.println("classTimeNum: " +classTimeList.get(i)+ " >>>>>>>>>>"
-                              +"couserName: " + className);
+        for (int i = 0; i < classInfoList.size(); i++) {
+
+//            String className = (String) classTimeMap.get(classTimeList.get(i));
+            ClassDetail classDetail=classInfoList.get(i);
+            System.out.println("classTimeNum: " +classDetail.getClassTimeNum()+ " >>>>>>>>>>"
+                              +"couserName: " + classDetail.getClassName()+">>>>>>>>>>>>>>>"
+                                +"classType:" +classDetail.getClassType());
+
+
+
         }
+
+
     }
 
 }

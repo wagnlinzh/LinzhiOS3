@@ -47,7 +47,7 @@ public class HibernateORMappingTest2 {
 
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-
+//
         Student stu= (Student)session.createQuery("from Student s where s.email = ?")
                 .setString(0, "alan@me.com")
                 .uniqueResult();
@@ -58,13 +58,15 @@ public class HibernateORMappingTest2 {
 //        stu.setPassword("alan");
 
         Course c = new Course();
-        c.setName("OS");
+        c.setName("计算机组成原理");
 
         Score score = new Score();
         score.setStudent(stu);
         score.setCourse(c);
-        score.setScore(98);
-        score.setClassTimeNum(9);
+        score.setScore(141);
+
+        score.setClassTimeNum(9);           /*虽然不互斥，但是也不要一样*/
+        score.setClassType(0);/*1:必修            0 ：选修*/
 
 
 
@@ -120,12 +122,15 @@ public class HibernateORMappingTest2 {
 
 
 
-//      这种方式的操作是对应于set的操作方式
         System.out.println("=============================score.getScore()=============================");
         for (Score score:stu.getScores()) {
             System.out.println(score.getScore());
         }
 
+        System.out.println("=============================score.getClassType()=============================");
+        for (Score score:stu.getScores()) {
+            System.out.println(score.getClassType());
+        }
 
 
         System.out.println("==========================================================");

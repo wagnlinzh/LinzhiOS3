@@ -13,7 +13,7 @@
 
         <property name="score" column="score" type="int"/>
         <property name="classTimeNum" column="classTimeNum" type="int"/>
-        <property name="classType" column="classType" type="int"/>
+        <property name="classType" column="classType" type="int" not-null="true"/>
 
 
         <many-to-one name="student" class="linzhi.bean.Student" column="S_id" fetch="join" cascade="all"/>

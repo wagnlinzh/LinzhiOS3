@@ -101,9 +101,9 @@
             <div class="column"></div>
             <div class="column"></div>
             <div class="column"></div>
-            <div class="column">概率论</div>
-            <div class="column">政治</div>
-            <div class="column">高等数学</div>
+            <div class="column"></div>
+            <div class="column"></div>
+            <div class="column"></div>
             <div class="column"></div>
         </div>
 
@@ -116,21 +116,21 @@
             <div class="column"></div>
             <div class="column"></div>
             <div class="column"></div>
-            <div class="column">数据结构</div>
-            <div class="column">计算机组成原理</div>
-            <div class="column">计算机网络</div>
+            <div class="column"></div>
+            <div class="column"></div>
+            <div class="column"></div>
         </div>
 
         <!--下午 第一节课 -->
         <div class="eight column row">
             <div class="column"><i class="tag icon"></i>Afternoon</div>
             <div class="column"></div>
-            <div class="column">线性代数</div>
-            <div class="column">概率论</div>
-            <div class="column">政治</div>
-            <div class="column">数据结构</div>
-            <div class="column">计算机组成原理</div>
-            <div class="column">计算机网络</div>
+            <div class="column"></div>
+            <div class="column"></div>
+            <div class="column"></div>
+            <div class="column"></div>
+            <div class="column"></div>
+            <div class="column"></div>
         </div>
 
 
@@ -149,13 +149,13 @@
         <!-- 晚上 第一节课 -->
         <div class="eight column row">
             <div class="column"><i class="tag icon"></i>Evening</div>
-            <div class="column">高等数学</div>
-            <div class="column">线性代数</div>
-            <div class="column">概率论</div>
-            <div class="column">政治</div>
             <div class="column"></div>
-            <div class="column">计算机组成原理</div>
-            <div class="column">计算机网络</div>
+            <div class="column"></div>
+            <div class="column"></div>
+            <div class="column"></div>
+            <div class="column"></div>
+            <div class="column"></div>
+            <div class="column"></div>
         </div>
 
 
@@ -181,11 +181,13 @@
     <!-- iframe弹出层 [[ -->
     <iframe frameborder="0" scrolling="yes" id="ifr-dialog-container" src="javascript::" class="box-iframe"></iframe>
 
+    <%--
     <div id='className'></div>
 
     <a href="#" class="simplemodal-close">
         <div class="ui blue button">确认并关闭</div>
     </a>
+    --%>
 
     <%--
         /*
@@ -226,38 +228,34 @@
 
 
 <!--  为选课的空的格子里填入尚未选课的按钮;-->
+
 <script type="text/javascript">
+
     $(function () {
 
-        <%
-            Map classTime_courseMap=  (HashMap) request.getAttribute("classTime_courseMap");
 
-            List<Integer> classTimeNumList=(List<Integer>) request.getAttribute("classTimeList");
-
-            for(int i=0;i<classTimeNumList.size();i++){
-                System.out.println("JSP : classTime_courseMap.get() : className : "
-                + classTime_courseMap.get(classTimeNumList.get(i)));
-            }
-
-
-        %>
 
         <%--用一个循环类似的东西，将className，通过序号将其放入对应的list中。序号对应为classTimeNum--%>
 
+        <s:iterator value="#request.classInfoList">
+        var $unit = $(".column:not('.eight.column.row'):eq(" +
+                <s:property value="classTimeNum"/> +")");
 
 
-
-
-        <s:iterator value="#request.classTime_courseMap">
-            var $unit = $(".column:not('.eight.column.row'):eq(" +
-                    <s:property value="key"/> +")");
-
+        if(<s:property value="classType"/> ==0){/*选修课*/
             $unit.append("<a href='classHtml.action' class='open-basic-ifr'>" +
-            "<button class='ui blue basic button' id=" + i + ">" +
-            "<s:property value="value"/>" + "</button>" +
-            "</a>");
-        </s:iterator>
+                    "<button class='ui blue basic button' id=" + <s:property value="classTimeNum"/> + ">" +
+                    "<s:property value="className"/>" + "</button>" +
+                    "</a>");
+        }
+        else{/*必修课*/
+            $unit.append("<s:property value="className"/>");
+        }
 
+
+
+
+        </s:iterator>
 
 
         for (var i = 1; i < 56; i++) {
