@@ -162,7 +162,7 @@
 
 
 
-
+z
 2015/4/11
 1.  基于map的courseName和courseScore 关联起来，然后在只用一个iterator 来迭代出来 实现了。现在总算完成了一点什么了，不易
     不过话说回来，我发现，用HQL，真的很方便就能完成数据库的操作啊
@@ -402,10 +402,25 @@ goldfish
 3.  对于区分选修和必修，在score表中（好吧，其实这个表早就该改名为classManager表了）设置一个classType属性，当
     classType==1 表示 必修，classType ==0 表示选修。
 
-    <done>
+    a. <done>
     完成了区分选修必修的，chooseClass页面的课表的显示工作。
 
 
+4.  b -><half>
+    完成了前端的课表对于用户所选课程的实时显示
+
+
+    还需要完成的是，update到后端的数据库，which is not so difficult。
+
+
+2015/4/21
+1.  完成昨天关于后台还剩下的一点内容。update <not yet>
+
+2.  完成class页面的总人数和还剩下人数 <not yet>
+
+3.  修补了一个小细节，关于选课0的位置出现课程的情况。
+
+4.  发现bug： 删除课程的时候，把Student和Course表都级联删除了，故存储的时候出现问题了
 
 
 
@@ -416,9 +431,18 @@ goldfish
 
 
 
+2015/4/22
+1.  完成了困扰我两天一夜半个下午的那个级联删除的问题，thanks god，原因是对于Student，course ，score三张级联表对应的删除问题，
+    之前一直不能删除的原因是，lazy=true，系统默认是延迟加载的，在对sc表操作的时候，内存中没有加载Student和course这两张表，故在删除的时候
+    由于需要级联删除，故对应的course和student的记录，在内存中没法找到，所以无法删除。必须设置lazy=false，让它们在调用sc表的时候，对sc执行删除操作的时候
+    就已经加载到内存中，才能进行删除。
 
+    这是一个经典的，值得纪念的错误log：
+    解决Hibernate抛出异常XXX_$$_javassist_1 cannot be cast to javassist.util.proxy.Proxy的方法
+        解决方法: 在Department.hbm.xml配置文件里,往<class name="Department" table="oa_department" >....</class>中的<class>标签中添加lazy="false"属性
+        备注: 这里的Hibernate版本是4.3.4.Final
 
-
+2.  又想到一个小问题，对于course，这个需要在那里new一个新的出来吗？如果原来的Course中有对应的className，是否就不需要new了呢？ update2
 
 
 
@@ -465,6 +489,7 @@ goldfish
 
 6.完成了数据库中课表到页面的显示，区分必修选修情况下 的显示工作。
 
+7.完成了前端实时的显示所选的所有课程的工作
 
 
 

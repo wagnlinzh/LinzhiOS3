@@ -7,7 +7,8 @@ import com.opensymphony.xwork2.ActionSupport;
  * Created by wanglinzhizhi on 15-4-15.
  */
 public class CourseTips extends ActionSupport {
-    private String classTime;
+
+    private String classTime;  //classTimeNum
 
     public String getClassTime() {
         return classTime;
@@ -80,8 +81,6 @@ public class CourseTips extends ActionSupport {
 
         ActionContext.getContext().getSession().put("classTimeReal",realclassTime);
         ActionContext.getContext().getSession().put("classTimeNum",classTime);
-
-
 
         return SUCCESS;
     }

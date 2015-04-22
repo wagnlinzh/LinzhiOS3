@@ -20,24 +20,6 @@ import java.util.Map;
  */
 public class checkGradeJspAction extends ActionSupport {
 
-//    private String courseName;
-//    private int scoreGet;
-//
-//    public String getCourseName() {
-//        return courseName;
-//    }
-//
-//    public void setCourseName(String courseName) {
-//        this.courseName = courseName;
-//    }
-//
-//    public int getScoreGet() {
-//        return scoreGet;
-//    }
-//
-//    public void setScoreGet(int scoreGet) {
-//        this.scoreGet = scoreGet;
-//    }
 
     @Override
     public String execute() throws Exception {
@@ -73,9 +55,9 @@ public class checkGradeJspAction extends ActionSupport {
         HttpServletRequest request = ServletActionContext.getRequest();
         request.setAttribute("couse_scroe", map);
 
-//        request.setAttribute("CourseList",courseList);
+        request.setAttribute("CourseList",courseList);
 //
-//        request.setAttribute("ScoreList",scoreList);
+        request.setAttribute("ScoreList",scoreList);
 
 
         return SUCCESS;

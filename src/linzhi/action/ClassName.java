@@ -4,12 +4,15 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import linzhi.bean.ClassDetail;
 import linzhi.bean.Course;
+import linzhi.bean.Student;
 import linzhi.service.ListAllClassTimeService;
 import linzhi.service.ListAllClassTypeService;
 import linzhi.service.ListAllCourseService;
+import linzhi.service.UpdateSCInfo;
 import linzhi.service.impl.ListAllClassTimeServiceImpl;
 import linzhi.service.impl.ListAllClassTypeServiceImpl;
 import linzhi.service.impl.ListAllCourseServiceImpl;
+import linzhi.service.impl.UpdateSCInfoImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,17 +35,29 @@ public class ClassName extends ActionSupport {
     @Override
     public String execute() throws Exception {
 
-        System.out.println("classNameAction: className = "+className);
+//        System.out.println("classNameAction: className = "+className);
 
 
         List<ClassDetail> classInfoList=(List<ClassDetail>) ActionContext.getContext()
                 .getSession().get("classInfoList");
 
-        String classTimeNum2=(String )ActionContext.getContext()
+        //Student email
+        Student student = (Student) ActionContext.getContext().getSession().get("userInfo");
+        String email = student.getEmail();
+
+        //classTimeNum
+        String classTimeNum2=(String)ActionContext.getContext()
                 .getSession().get("classTimeNum");
         int classTimeNum=Integer.parseInt(classTimeNum2) ;
 
+        //classType 1：必修 0：选修
         int classType=0;
+
+        UpdateSCInfo updateSCInfo=new UpdateSCInfoImpl();
+        updateSCInfo.updateSCInfo(email,className,classTimeNum,classType);
+
+
+
 
         ClassDetail classDetail=new ClassDetail();
         classDetail.setClassName(className);
@@ -63,8 +78,8 @@ public class ClassName extends ActionSupport {
                 classInfoList.remove(i);
             }
         }
-        classInfoList.add(classDetail);
 
+        classInfoList.add(classDetail);
 
 
         return SUCCESS;
@@ -95,11 +110,6 @@ public class ClassName extends ActionSupport {
             int course_classTimeNum = classTimeList.get(i);
             int classType=classTypeList.get(i);
 
-
-//            System.out.println(course_classTimeNum);
-//            System.out.println(courseName);
-
-//            classTimeMap.put(course_classTimeNum,courseName);
             ClassDetail classDetail=new ClassDetail();
             classDetail.setClassName(courseName);
             classDetail.setClassTimeNum(course_classTimeNum);

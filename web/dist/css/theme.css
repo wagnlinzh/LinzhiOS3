@@ -58,8 +58,8 @@ div#index-page-header{
 }
 
 div#flagChoosen {
-
-    background: rgba(127, 118, 246, 0.07);
+    background: rgba(87, 214, 22, 0.43);
+    /*background: rgba(127, 118, 246, 0.07);*/
 }
 
 a#flagChoosen{

@@ -206,7 +206,6 @@
 
             var $classNamebuffer = $("#classNameBuffer");
             $classNamebuffer.attr("value", "尚未选课");
-
             $("#formclassName").submit();
 
         } else {
@@ -219,16 +218,9 @@
             $.modal('<div><h1>Good Luck! ' + $className + '</h1><p></p><p>所选择的课程已提交!</p></div>',
                     {"overlayClose": true});
 
-
             var $classNamebuffer = $("#classNameBuffer");
             $classNamebuffer.attr("value", $className);
-//                alert($classNamebuffer.attr("value"));
-
             $("#formclassName").submit();
-
-
-            // var url="chooseClass.jsp"
-            //   window.open(encodeURI(url+"?$className="+$className));
 
         }
     });

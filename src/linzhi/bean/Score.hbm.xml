@@ -16,9 +16,9 @@
         <property name="classType" column="classType" type="int" not-null="true"/>
 
 
-        <many-to-one name="student" class="linzhi.bean.Student" column="S_id" fetch="join" cascade="all"/>
+        <many-to-one name="student" class="linzhi.bean.Student" column="S_id" fetch="join" cascade="save-update"/>
 
-        <many-to-one name="course" class="linzhi.bean.Course" column="C_id" fetch="join" cascade="all"/>
+        <many-to-one name="course" class="linzhi.bean.Course" column="C_id" fetch="join" cascade="save-update"/>
 
     </class>
 

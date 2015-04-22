@@ -253,7 +253,28 @@
 
         </s:iterator>
 
-        <%--将剩余空 的部分填满尚未选课的button--%>
+        <%--从class.jsp跳转回来的时候的课表中的className的更新操作。--%>
+        var BtnID = <%=session.getAttribute("classTimeNum")%>;
+
+        var className="<%=session.getAttribute("className")%>";
+
+        if (BtnID != null && className!="null") {
+
+            var $unit = $(".column:not('.eight.column.row'):eq(" + BtnID + ")");
+
+            $unit.replaceWith("<div class='column'   id='flagChoosen'> " +
+
+                    "<a href='classHtml.action' class='open-basic-ifr'>" +
+
+                    "<button class='ui blue basic button' id=" + BtnID + ">" + className +
+
+                    " </button></a>" +
+
+                    "</div>");
+        }
+
+
+        <%--将剩余空 的部分填满"尚未选课"的button--%>
         for (var i = 1; i < 56; i++) {
 
 
@@ -305,43 +326,18 @@
     $(function () {
         var $Btn = $(".ui.blue.basic.button");
         $Btn.click(function (event) {
-//
             var classTime = $(this).attr("id");
             var $buffer = $("#classTimeBuffer");
             $buffer.attr("value", classTime);
-//            alert($buffer.attr("value"));
-
             $("#testform").submit();
         });
     })
 </script>
 
 
-<%--从class.jsp跳转回来的时候的课表中的className的更新操作。--%>
-<script type="text/javascript">
-
-    <%--$(function () {--%>
 
 
-        <%--var BtnID = <%=session.getAttribute("classTimeNum")%>;--%>
 
-        <%--if (BtnID != null) {--%>
-
-            <%--var $unit = $(".column:not('.eight.column.row'):eq(" + BtnID + ")");--%>
-
-            <%--$unit.replaceWith("<div class='column'   id='flagChoosen'> " +--%>
-
-                    <%--"<a href='classHtml.action' class='open-basic-ifr'>" +--%>
-
-                    <%--"<button class='ui blue basic button'>" + "<%= request.getParameter("className")%>" +--%>
-
-                    <%--" </button></a>" +--%>
-
-                    <%--"</div>");--%>
-        <%--}--%>
-
-    <%--})--%>
-</script>
 
 </body>
 

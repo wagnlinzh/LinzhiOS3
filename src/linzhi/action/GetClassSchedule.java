@@ -27,9 +27,7 @@ public class GetClassSchedule extends ActionSupport {
     @Override
     public String execute() throws Exception {
 
-//        System.out.println("===============3==================");
-        Student student = (Student) ActionContext.getContext().getSession().get("userInfo");
-//        System.out.println("email is " + student.getEmail());
+        Student student = (Student) ActionContext.getContext().getSession().get("userInfo");//登录的时候写入的session的
 
         String email = student.getEmail();
 
@@ -41,20 +39,19 @@ public class GetClassSchedule extends ActionSupport {
 
 //      上课时间
         ListAllClassTimeService listAllClassTimeService=new ListAllClassTimeServiceImpl();
-        List<Integer> classTimeList=listAllClassTimeService.listAllClassTime(email);
+        List<Integer> classTimeNumList=listAllClassTimeService.listAllClassTime(email);
 
-
+//      课程类型
         ListAllClassTypeService listAllClassTypeService=new ListAllClassTypeServiceImpl();
         List<Integer> classTypeList=listAllClassTypeService.listAllClassType(email);
 
-//        Map classTimeMap = new HashMap();
 
         List<ClassDetail> classInfoList=new ArrayList<ClassDetail>();
 
-        for (int i = 0; i < classTimeList.size(); i++) {
+        for (int i = 0; i < classTimeNumList.size(); i++) {
 
             String courseName = courseList.get(i).getName();
-            int course_classTimeNum = classTimeList.get(i);
+            int course_classTimeNum = classTimeNumList.get(i);
             int classType=classTypeList.get(i);
 
             ClassDetail classDetail=new ClassDetail();

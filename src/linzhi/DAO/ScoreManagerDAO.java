@@ -17,4 +17,6 @@ public interface ScoreManagerDAO {
 
     public List<Course> listAllCourse(String email);
 
+    public void updateSCInfo(String email,String className,int classTimeNum,int classType);
+
 }

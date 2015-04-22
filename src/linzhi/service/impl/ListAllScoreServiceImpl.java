@@ -14,7 +14,7 @@ public class ListAllScoreServiceImpl implements ListAllScoreService {
     public List<Integer> listAllScore(String email) {
         ScoreManagerDAO scoreManagerDAO =new ScoreManagerDAOImpl();
 
-        return scoreManagerDAO.listAllClassTime(email);
+        return scoreManagerDAO.listAllScore(email);
 
     }
 }
