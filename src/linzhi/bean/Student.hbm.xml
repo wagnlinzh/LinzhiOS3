@@ -5,7 +5,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="linzhi.bean.Student" table="Student" lazy="false">
+    <class name="linzhi.bean.Student" table="Student">
 
         <id name="id" column="sid" type="string">      <!--//name=id，是指主键的名字是id，column是指对应数据库中的哪一列-->
             <generator class="uuid"/>

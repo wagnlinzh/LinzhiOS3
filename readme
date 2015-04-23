@@ -464,10 +464,20 @@ goldfish
     use named parameters or JPA-style positional parameters instead.
 
 
-2.
+2.  现在优化一下去simplemodal方式的实现，去掉在跳转到class页面都 无意义的黑框的问题。
+
+    问题：
+    无法激活CourseTips这个action，如果这个action没法激活，那么后面的操作就不能进行，
+    激活它需要获取到它的classTimeNum
+
+    在simplemodal存在的时候，因为先激活的是simplemodal，所以之后在触发CourseTips，是触发了CourseTips之后，才跳转到class页面的。
+
+    若不使用simplemodal，在点击button的时候，先触发的是classHtml.action，所以直接跳转到了class.jsp。故没有机会执行CourseTips
+
+    所以造成了错误。那么现在的问题是，如何先触发CourseTips，再触发ClassHtml.action?       <done/>
 
 
-
+4.
 
 
 
@@ -514,6 +524,8 @@ goldfish
 1.  怎么在readme中放截图呢？
 
 2.  怎么解决登录的时候的重复提交的问题呢？
+
+3.  怎么解决simplemodal的整合进来的问题呢？
 
 
 

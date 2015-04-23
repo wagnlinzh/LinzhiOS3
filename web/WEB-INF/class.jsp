@@ -209,10 +209,7 @@
             $("#formclassName").submit();
 
         } else {
-            //将课程名的数据传到chooseClass.jsp页面
-            <%--<%--%>
-            <%--System.out.println(session.getAttribute("className"));--%>
-            <%--%>--%>
+
 
 
             $.modal('<div><h1>Good Luck! ' + $className + '</h1><p></p><p>所选择的课程已提交!</p></div>',
@@ -220,6 +217,7 @@
 
             var $classNamebuffer = $("#classNameBuffer");
             $classNamebuffer.attr("value", $className);
+
             $("#formclassName").submit();
 
         }
@@ -228,7 +226,7 @@
     $submitBtn.click(function () {
         setTimeout(function () {
             $.modal.close()
-        }, 2000);
+        }, 3000);
     });
 
 </script>

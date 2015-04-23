@@ -48,6 +48,7 @@ public class ClassName extends ActionSupport {
         //classTimeNum
         String classTimeNum2=(String)ActionContext.getContext()
                 .getSession().get("classTimeNum");
+        System.out.println("classTimeNum2 >>>>>>>>>>>>>> "+classTimeNum2);
         int classTimeNum=Integer.parseInt(classTimeNum2) ;
 
         //classType 1：必修 0：选修

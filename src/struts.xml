@@ -56,9 +56,9 @@
             <result>WEB-INF/class.jsp</result>
         </action>
 
-        <action name="classHtml">
-            <result>WEB-INF/class.jsp</result>
-        </action>
+        <!--<action name="classHtml">-->
+            <!--<result>WEB-INF/class.jsp</result>-->
+        <!--</action>-->
 
         <action name="ClassName" class="linzhi.action.ClassName">
             <result>WEB-INF/chooseClass.jsp</result>

@@ -67,8 +67,9 @@
 <div class="container theme-showcase" role="main">
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron" style="display: none">
+    <div class="jumbotron">
         <p>选课系统</p>
+
         <p>这是选课系统，通过本系统进行选课操作，并提交.</p>
     </div>
 
@@ -175,7 +176,7 @@
 <!-- 弹出内容 -->
 <div id="ifr-dialog">
     <!-- iframe弹出层 [[ -->
-    <iframe frameborder="0" scrolling="yes" id="ifr-dialog-container" src="javascript::" class="box-iframe"></iframe>
+    <%--<iframe frameborder="0" scrolling="yes" id="ifr-dialog-container" src="javascript::" class="box-iframe"></iframe>--%>
 
     <%--
     <div id='className'></div>
@@ -235,18 +236,26 @@
         <s:iterator value="#session.classInfoList">
 
 
-
         var $unit = $(".column:not('.eight.column.row'):eq(" +
                 <s:property value="classTimeNum"/> +")");
 
 
-        if(<s:property value="classType"/> ==0){/*选修课*/
-            $unit.append("<a href='classHtml.action' class='open-basic-ifr'>" +
-                    "<button class='ui blue basic button' id=" + <s:property value="classTimeNum"/> + ">" +
+        if (<s:property value="classType"/> ==0
+        )
+        {/*选修课*/
+            /*$unit.append("<a href='classHtml.action' class='open-basic-ifr'>" +
+                  "<button class='ui blue basic button' id=" + <s:property value="classTimeNum"/> +">" +
+                    "<s:property value="className"/>" + "</button>" +
+                    "</a>");*/
+            $unit.append("<a href='#' class='open-basic-ifr'>" +
+                    "<button class='ui blue basic button' id=" + <s:property value="classTimeNum"/> +">" +
                     "<s:property value="className"/>" + "</button>" +
                     "</a>");
+
+
         }
-        else{/*必修课*/
+        else
+        {/*必修课*/
             $unit.append("<s:property value="className"/>");
         }
 
@@ -256,21 +265,23 @@
         <%--从class.jsp跳转回来的时候的课表中的className的更新操作。--%>
         var BtnID = <%=session.getAttribute("classTimeNum")%>;
 
-        var className="<%=session.getAttribute("className")%>";
+        var className = "<%=session.getAttribute("className")%>";
 
-        if (BtnID != null && className!="null") {
+        if (BtnID != null && className != "null") {
 
             var $unit = $(".column:not('.eight.column.row'):eq(" + BtnID + ")");
 
             $unit.replaceWith("<div class='column'   id='flagChoosen'> " +
 
-                    "<a href='classHtml.action' class='open-basic-ifr'>" +
+                    "<a href='#' class='open-basic-ifr'>" +
 
                     "<button class='ui blue basic button' id=" + BtnID + ">" + className +
 
                     " </button></a>" +
 
                     "</div>");
+
+
         }
 
 
@@ -281,16 +292,38 @@
             var $unit = $(".column:not('.eight.column.row'):eq(" + i + ")");
 
             if ($unit.text() == "") {
-                $unit.append("<a href='classHtml.action' class='open-basic-ifr'>" +
+                $unit.append("<a href='#' class='open-basic-ifr'>" +
                         "<button class='ui blue basic button' id=" + i + ">尚未选课</button>" +
                         "</a>");
+
             }
         }
     });
 </script>
 
+
+
+<%--隐藏的按钮，仅仅是为了传值的buffer--%>
+<form action="CouresTips.action" id="testform">
+    <input type="hidden" id="classTimeBuffer" value="0" name="classTime"/>
+</form>
+
+<%--提交到class页面，classTime的内容--%>
+<script type="text/javascript">
+    $(function () {
+        var $Btn = $(".ui.blue.basic.button");
+        $Btn.click(function (event) {
+            var classTime = $(this).attr("id");
+            var $buffer = $("#classTimeBuffer");
+            $buffer.attr("value", classTime);
+            $("#testform").submit();
+        });
+    })
+</script>
+
+
 <!--simplemoadal  -->
-<script type='text/javascript'>
+<%--<script type='text/javascript'>
     ;
     jQuery(function ($) {
         /* iframe */
@@ -314,30 +347,7 @@
             }}); //id=ifr-dialog-content
 
     }
-</script>
-
-<%--隐藏的按钮，仅仅是为了传值的buffer--%>
-<form action="CouresTips.action" id="testform">
-    <input type="hidden" id="classTimeBuffer" value="0" name="classTime"/>
-</form>
-
-<%--提交到class页面，classTime的内容--%>
-<script type="text/javascript">
-    $(function () {
-        var $Btn = $(".ui.blue.basic.button");
-        $Btn.click(function (event) {
-            var classTime = $(this).attr("id");
-            var $buffer = $("#classTimeBuffer");
-            $buffer.attr("value", classTime);
-            $("#testform").submit();
-        });
-    })
-</script>
-
-
-
-
-
+</script>--%>
 
 </body>
 
