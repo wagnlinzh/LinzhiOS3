@@ -9,17 +9,10 @@ import java.util.Set;
 public class Course {
     private String id;
     private String name;
-    private Set<Student> students=new HashSet<Student>();
-    private Set<Score> scores=new HashSet<Score>();
+    private int timeNum;
+    private Set<Student> students = new HashSet<Student>();
+    private Set<Score> scores = new HashSet<Score>();
 
-
-    public Set<Score> getScores() {
-        return scores;
-    }
-
-    public void setScores(Set<Score> scores) {
-        this.scores = scores;
-    }
 
     public String getId() {
         return id;
@@ -37,11 +30,27 @@ public class Course {
         this.name = name;
     }
 
+    public int getTimeNum() {
+        return timeNum;
+    }
+
+    public void setTimeNum(int timeNum) {
+        this.timeNum = timeNum;
+    }
+
     public Set<Student> getStudents() {
         return students;
     }
 
     public void setStudents(Set<Student> students) {
         this.students = students;
+    }
+
+    public Set<Score> getScores() {
+        return scores;
+    }
+
+    public void setScores(Set<Score> scores) {
+        this.scores = scores;
     }
 }

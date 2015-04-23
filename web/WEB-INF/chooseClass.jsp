@@ -67,7 +67,7 @@
 <div class="container theme-showcase" role="main">
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
+    <div class="jumbotron" style="display: none">
         <p>选课系统</p>
         <p>这是选课系统，通过本系统进行选课操作，并提交.</p>
     </div>

@@ -442,17 +442,29 @@ goldfish
         解决方法: 在Department.hbm.xml配置文件里,往<class name="Department" table="oa_department" >....</class>中的<class>标签中添加lazy="false"属性
         备注: 这里的Hibernate版本是4.3.4.Final
 
-2.  又想到一个小问题，对于course，这个需要在那里new一个新的出来吗？如果原来的Course中有对应的className，是否就不需要new了呢？ update2
+2.  又想到一个小问题，对于course，这个需要在那里new一个新的出来吗？如果原来的Course中有对应的className，是否就不需要new了呢？
+    update2
 
 
+3.  小问题不断，课程名与所选课程在刷新后不对应，简单的说，Course表有问题，当全部选满了之后，Course的数目不止42个，
+    我可以保证sc表只有42项，怎么保证Course表中也只有42项呢？ 对哪些项进行删除是合理的？
 
 
+   解决办法有两个，第一，把course表也设置一个classTimeNum，
+                 第二办法，query.list（）
 
 
+                 bug:On release of batch it still contained JDBC statements?
+                <done>
 
 
+2015/4/23
+除了余课量的问题，其他问题基本全部搞定了。
+1.  WARN:Encountered positional parameter near line 1, column 67.  Positional parameter are considered deprecated;
+    use named parameters or JPA-style positional parameters instead.
 
 
+2.
 
 
 

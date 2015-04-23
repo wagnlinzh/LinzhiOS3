@@ -109,16 +109,21 @@ public class ScoreManagerDAOImpl implements ScoreManagerDAO {
 
 
             Course c = null;
-            List<Course> courseList = (List<Course>) session.createQuery("from Course ").list();
-            for (int i = 0; i < courseList.size(); i++) {
-                String className2 = courseList.get(i).getName();
-                if (className2.equals(className)) {/*若原有的Course表中有相应的课程 直接删除中*/
-                    session.delete(courseList.get(i));
-                } else {              /*若没有，则new出这门课程，出现这种情况是，选修课新加了别的课程*/
-                    c = new Course();
-                    c.setName(className);
-                }
+//            List<Course> courseList = (List<Course>) session.createQuery("from Course").list();
+//            for (int i = 0; i < courseList.size(); i++) {
+//                int timeNum = courseList.get(i).getTimeNum();
+//                if (timeNum==classTimeNum) {/*若原有的表中有相同的classTIme的课程 直接删除中,然后再添加*/
+//                    session.delete(courseList.get(i));
+//                }
+//            }/*若没有，则new出这门课程，出现这种情况是，选修课新加了别的课程*/
+
+            c=(Course) (session.createQuery("from Course c where c.timeNum=?").setInteger(0,classTimeNum)).uniqueResult();
+            if (c!=null){
+                session.delete(c);
             }
+            c = new Course();
+            c.setName(className);
+            c.setTimeNum(classTimeNum);
 
 
             Score score = new Score();
@@ -146,6 +151,7 @@ public class ScoreManagerDAOImpl implements ScoreManagerDAO {
 
             if (flag) {/*有相同的classTimeNum，删除对应的SC表中的那一条记录，并在最后新增加一条*/
 
+
                 List<Score> scoreList = (List<Score>) session.createQuery("from Score ").list();
 
                 Score score1 = scoreList.get(hover);
@@ -153,12 +159,15 @@ public class ScoreManagerDAOImpl implements ScoreManagerDAO {
                 session.delete(score1);
 
 
+
             }
+
             /*没有相同的记录则直接更新，或删除之后都需要增加这条记录*/
+
+
             session.save(score);
-
-
             transaction.commit();
+
         } catch (HibernateException e) {
             HibernateUtil.rollback(transaction);
         } finally {

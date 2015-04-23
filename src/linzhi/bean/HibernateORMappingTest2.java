@@ -48,17 +48,18 @@ public class HibernateORMappingTest2 {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 //
-        Student stu = (Student) session.createQuery("from Student s where s.email = ?")
-                .setString(0, "alan@me.com")
-                .uniqueResult();
+//        Student stu = (Student) session.createQuery("from Student s where s.email = ?")
+//                .setString(0, "alan@me.com")
+//                .uniqueResult();
 
-//        Student stu = new Student();
-//        stu.setName("alan");
-//        stu.setEmail("alan@me.com");
-//        stu.setPassword("alan");
+        Student stu = new Student();
+        stu.setName("alan");
+        stu.setEmail("alan@me.com");
+        stu.setPassword("alan");
 
         Course c = new Course();
         c.setName("计算机网络");
+        c.setTimeNum(10);
 
         Score score = new Score();
         score.setStudent(stu);

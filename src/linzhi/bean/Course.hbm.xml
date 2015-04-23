@@ -5,13 +5,14 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="linzhi.bean.Course" table="Course" lazy="false">
+    <class name="linzhi.bean.Course" table="Course">
 
         <id name="id" column="cid" type="string">      <!--//name=id，是指主键的名字是id，column是指对应数据库中的哪一列-->
             <generator class="uuid"/>
         </id>
 
         <property name="name" column="cname" type="string"/>
+        <property name="timeNum" column="timeNum" type="int"/>
 
         <set name="students" table="S_C" cascade="save-update" order-by="id asc">
             <key column="C_id"></key>
