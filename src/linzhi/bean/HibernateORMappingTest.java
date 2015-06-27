@@ -34,8 +34,6 @@ public class HibernateORMappingTest {
         student.setName("alan@me.com");
         student.setPassword("123");
         session.save(student);
-
-
         session.getTransaction().commit();
         session.close();
     }

@@ -484,7 +484,11 @@ goldfish
 
 
 
+2015/5/5
+1.  new bug: 不知道为什么LinzhiOS3 突然不能正常运行了
 
+    <done/> 原因是在 Struts basic 多加了一个jar文件（struts2-spring-plugin-2.3.20.jar）导致的，需要将其删除。
+    因为这里没有用到spring将其放在这里导致了错误。
 
 
 
@@ -513,6 +517,8 @@ goldfish
 
 7.完成了前端实时的显示所选的所有课程的工作
 
+8.完成了Spring框架在这上的移植
+
 
 
 
@@ -527,6 +533,7 @@ goldfish
 
 3.  怎么解决simplemodal的整合进来的问题呢？
 
+4.  别忘了要完成class页面都 课程 总人数 余课量的列表
 
 
 ...

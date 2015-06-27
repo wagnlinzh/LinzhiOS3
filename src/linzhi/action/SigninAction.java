@@ -60,7 +60,7 @@ public class SigninAction extends ActionSupport {
 
 
 
-        if (this.signinService.isSignin(email,password))
+        while (this.signinService.isSignin(email,password))
         {
             Student student1=new Student();
             student1.setEmail(email);
